@@ -60,7 +60,10 @@ type Mino struct {
 
 func NewMino() *Mino {
 	rand.Seed(time.Now().UnixNano())
-	block := blocks[rand.Intn(len(blocks))]
+	//block := blocks[rand.Intn(len(blocks))]
+	nextMinoIndex := getNextMinoIndex(gameId)
+	//nextMinoIndex := 0
+	block := blocks[nextMinoIndex]
 	block = strings.Replace(block, "\t", "", -1)
 	block = strings.Replace(block, " ", "", -1)
 	block = strings.Trim(block, "\n")

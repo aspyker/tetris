@@ -5,6 +5,7 @@ import (
 	"os"
 	"strconv"
 	"time"
+	uuid "github.com/nu7hatch/gouuid"
 )
 
 const (
@@ -118,6 +119,8 @@ func gameOver() {
 	clock.lock = false
 }
 
+var gameId string = ""
+
 func main() {
 	err := termbox.Init()
 	if err != nil {
@@ -127,6 +130,9 @@ func main() {
 
 	termbox.SetInputMode(termbox.InputEsc)
 	termbox.Flush()
+
+	gameIdVal, _ := uuid.NewV4()
+	gameId = gameIdVal.String()
 
 	clock = NewClock(func() {
 		currentMino.applyGravity()
